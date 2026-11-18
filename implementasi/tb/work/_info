@@ -1,0 +1,58 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Rainer/TUGAS/FPGA/Tugas-UTS-CNN/implementasi/tb
+vcnn_coffee_top
+Z1 !s110 1795007483
+!i10b 1
+!s100 Y?1l2gE?UOoTHA7[mJl@<3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IbhO34k3=SQ?=[LSY8oOC]0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1795007461
+8../rtl/cnn_coffee_top.v
+F../rtl/cnn_coffee_top.v
+F../rtl/cnn_weights.vh
+!i122 2
+L0 1 246
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1795007483.000000
+!s107 ../rtl/cnn_weights.vh|tb_cnn_coffee.v|../rtl/cnn_coffee_top.v|
+Z6 !s90 -reportprogress|300|+incdir+../rtl|../rtl/cnn_coffee_top.v|tb_cnn_coffee.v|
+!i113 1
+Z7 !s92 +incdir+../rtl
+Z8 tCvgOpt 0
+vtb_cnn_coffee
+R1
+!i10b 1
+!s100 ^L?R7QKgT`F?0UAki2bMa2
+R2
+IV13Y4jkzZLm>WQP0njP^D1
+R3
+R0
+w1795007196
+8tb_cnn_coffee.v
+Ftb_cnn_coffee.v
+!i122 2
+L0 3 74
+R4
+r1
+!s85 0
+31
+R5
+Z9 !s107 ../rtl/cnn_weights.vh|tb_cnn_coffee.v|../rtl/cnn_coffee_top.v|
+R6
+!i113 1
+R7
+R8

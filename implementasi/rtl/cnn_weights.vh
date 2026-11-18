@@ -1,0 +1,21 @@
+// Auto-generated 2-Layer RGB INT8 CNN Weights
+localparam signed [31:0] C1_B_0 = 32'sd31943;
+localparam signed [31:0] C2_B_0 = -32'sd612;
+localparam signed [31:0] C1_B_1 = -32'sd1909;
+localparam signed [31:0] C2_B_1 = 32'sd3349;
+localparam signed [31:0] C1_B_2 = 32'sd18133;
+localparam signed [31:0] C2_B_2 = -32'sd403;
+localparam signed [31:0] C1_B_3 = 32'sd15195;
+localparam signed [31:0] C2_B_3 = -32'sd2682;
+localparam signed [31:0] C1_B_4 = -32'sd1468;
+localparam signed [31:0] C2_B_4 = -32'sd375;
+localparam signed [31:0] C1_B_5 = -32'sd925;
+localparam signed [31:0] C2_B_5 = 32'sd5289;
+localparam signed [31:0] C1_B_6 = -32'sd1139;
+localparam signed [31:0] C2_B_6 = -32'sd482;
+localparam signed [31:0] C1_B_7 = 32'sd10840;
+localparam signed [31:0] C2_B_7 = 32'sd2016;
+localparam signed [31:0] FC_B_0 = 32'sd74;
+localparam signed [31:0] FC_B_1 = -32'sd78;
+localparam signed [31:0] FC_B_2 = -32'sd13;
+localparam signed [31:0] FC_B_3 = 32'sd57;
