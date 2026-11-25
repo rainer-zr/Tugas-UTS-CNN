@@ -28,7 +28,7 @@ Repository ini berisi rancangan dan implementasi sistem **2D Convolutional Neura
 * Mengekspor nilai piksel RGB seluruh 400 citra uji ke format heksadesimal **`test_vectors.mem`** (`400 × 3.072 = 1.228.800` byte) dan **`test_labels.mem`** untuk pembacaan langsung oleh testbench Verilog via `$readmemh`.
 
 ### Step 2: Pelatihan Model & Kuantisasi Integer-Only (`algoritma/train_cnn_coffee.py`)
-* Melatih arsitektur 2-layer 2D-CNN ringan: `Input (32×32×3)` -> `Conv2D 3×3 (8 filter) + ReLU` -> `MaxPooling 2×2` -> `Conv2D 3×3 (8 filter) + ReLU` -> `GlobalAveragePooling` -> `Dense (4 kelas)`.
+* Melatih arsitektur 2-layer 2D-CNN ringan: `Input (32×32×3)` $\rightarrow$ `Conv2D 3×3 (8 filter) + ReLU` $\rightarrow$ `MaxPooling 2×2` $\rightarrow$ `Conv2D 3×3 (8 filter) + ReLU` $\rightarrow$ `GlobalAveragePooling` $\rightarrow$ `Dense (4 kelas)`.
 * Melakukan kuantisasi parameter bobot (`c1_w`, `c2_w`, `fc_w`) menjadi bilangan bulat bertanda **8-bit (`INT8`)** dan bias menjadi **32-bit (`INT32`)**, lalu menyimpannya ke `weights_int8.json` serta file memori hardware (`.mem` dan `.vh`).
 
 ### Step 3: Validasi Algoritma & Visualisasi Feature Map Python (`algoritma/run_cnn_coffee.py`)
@@ -36,7 +36,7 @@ Repository ini berisi rancangan dan implementasi sistem **2D Convolutional Neura
 * Menjalankan inferensi *integer-only* (*bit-shift* `>> 8` dan `>> 10`) pada 400 citra uji `.bmp`, menghasilkan akurasi **97.00% (388/400 benar)** sebagai *Golden Model*.
 
 ### Step 4: Perancangan Akselerator Hardware Verilog RTL (`implementasi/rtl/cnn_coffee_top.v`)
-* Menerjemahkan algoritma 2D-CNN terkuantisasi ke dalam **Verilog RTL** berbasis *Finite State Machine* (FSM) 6 tahap (`S_IDLE` -> `S_CONV1` -> `S_POOL1` -> `S_CONV2` -> `S_DENSE` -> `S_DONE`) dengan akumulator bertanda **40-bit (`signed [39:0]`)** dan *arithmetic right shift* (`>>>`) yang ekuivalen dengan Python.
+* Menerjemahkan algoritma 2D-CNN terkuantisasi ke dalam **Verilog RTL** berbasis *Finite State Machine* (FSM) 6 tahap (`S_IDLE` $\rightarrow$ `S_CONV1` $\rightarrow$ `S_POOL1` $\rightarrow$ `S_CONV2` $\rightarrow$ `S_DENSE` $\rightarrow$ `S_DONE`) dengan akumulator bertanda **40-bit (`signed [39:0]`)** dan *arithmetic right shift* (`>>>`) yang ekuivalen dengan Python.
 
 ### Step 5: Simulasi Verifikasi & Uji Kesesuaian Bit-Exact (`implementasi/tb/tb_cnn_coffee.v`)
 * Menguji `cnn_coffee_top.v` menggunakan `tb_cnn_coffee.v` pada 400 citra uji dan mencatat prediksi setiap sampel ke `output/rtl_predictions.csv`.
