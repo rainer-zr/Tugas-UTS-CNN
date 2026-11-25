@@ -1,3 +1,9 @@
+---
+
+### 4. `output/README.md`
+Lokasi: `C:\Rainer\TUGAS\FPGA\Tugas-UTS-CNN\output\README.md`
+
+```markdown
 # Laporan Progres & Evaluasi Akurasi (Python vs Verilog RTL)
 
 ## 1. Perbandingan Eksperimen & Akurasi Uji (400 Citra `.bmp` 32×32)
