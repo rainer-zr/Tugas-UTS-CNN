@@ -1,20 +1,20 @@
 # Implementasi Perangkat Keras (Verilog RTL) — Akselerator 2D-CNN
 
-Folder ini berisi desain **Register-Transfer Level (RTL)** untuk akselerator **2-Layer 2D-CNN terkuantisasi INT8** yang dirancang menggunakan bahasa **Verilog** untuk simulasi pada **ModelSim** serta sintesis pada **Intel Quartus Prime** (target FPGA **Cyclone-V DE10-Standard**).
+Folder ini berisi desain **Register-Transfer Level (RTL)** untuk akselerator **2-Layer 2D-CNN terkuantisasi INT8** yang dirancang menggunakan bahasa **Verilog** untuk simulasi pada **ModelSim** / **Icarus Verilog** serta sintesis pada **Intel Quartus Prime** (target FPGA **Cyclone-V DE10-Standard**).
 
 ---
 
 ## 1. Struktur Direktori `implementasi/`
 
 ### `rtl/` (Desain Sintesis & Memori Parameter)
-* **`cnn_coffee_top.v`**[cite: 10] — Modul utama (*top-level*) akselerator CNN yang mengimplementasikan *pipeline* inferensi berbasis *Finite State Machine* (FSM) dan aritmetika *fixed-point* bertanda (`40-bit signed`).
-* **`cnn_weights.vh`**[cite: 10] — Header Verilog berisi parameter bias 32-bit bertanda (`C1_B`, `C2_B`, `FC_B`) untuk setiap lapisan.
-* **`c1_weights.mem`**[cite: 10] — Memori bobot konvolusi lapisan pertama (`8 × 3 × 3 × 3 = 216` parameter INT8).
-* **`c2_weights.mem`**[cite: 10] — Memori bobot konvolusi lapisan kedua (`8 × 8 × 3 × 3 = 576` parameter INT8).
-* **`fc_weights.mem`**[cite: 10] — Memori bobot *Dense/Fully-Connected layer* (`4 × 8 = 32` parameter INT8).
+* **`cnn_coffee_top.v`** — Modul utama (*top-level*) akselerator CNN yang mengimplementasikan *pipeline* inferensi berbasis *Finite State Machine* (FSM) dan aritmetika *fixed-point* bertanda (`40-bit signed`).
+* **`cnn_weights.vh`** — Header Verilog berisi parameter bias 32-bit bertanda (`C1_B`, `C2_B`, `FC_B`) untuk setiap lapisan.
+* **`c1_weights.mem`** — Memori bobot konvolusi lapisan pertama (`8 × 3 × 3 × 3 = 216` parameter INT8).
+* **`c2_weights.mem`** — Memori bobot konvolusi lapisan kedua (`8 × 8 × 3 × 3 = 576` parameter INT8).
+* **`fc_weights.mem`** — Memori bobot *Dense/Fully-Connected layer* (`4 × 8 = 32` parameter INT8).
 
 ### `tb/` (Testbench Verifikasi)
-* **`tb_cnn_coffee.v`**[cite: 9] — *Testbench* otomatis untuk memuat 400 vektor citra uji RGB 32×32 piksel (`test_vectors.mem`), menjalankan inferensi siklus demi siklus pada `cnn_coffee_top`, memverifikasi bentuk gelombang (*waveform*), dan menghitung akurasi klasifikasi terhadap `test_labels.mem` (**97.00% — 388/400 benar**).
+* **`tb_cnn_coffee.v`** — *Testbench* otomatis untuk memuat 400 vektor citra uji RGB 32×32 piksel (`test_vectors.mem`), menjalankan inferensi siklus demi siklus pada `cnn_coffee_top`, mencatat hasil prediksi & latensi clock per gambar ke `rtl_predictions.csv`, memverifikasi bentuk gelombang (*waveform*), serta menghitung akurasi klasifikasi terhadap `test_labels.mem` (**97.00% — 388/400 benar, 100.00% *bit-exact match* dengan Python**).
 
 ---
 
