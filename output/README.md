@@ -6,16 +6,16 @@
 | :--- | :---: | :---: | :---: | :---: |
 | **Iterasi 1 — Baseline (1-Layer CNN Grayscale INT8)** | 32×32 Grayscale | 400 | 169 / 400 | 42.25% |
 | **Iterasi 2 — Fitur Warna (1-Layer CNN RGB INT8)** | 32×32 RGB | 400 | 254 / 400 | 63.50% |
-| **Iterasi 3 — Final Python Golden Model (2-Layer CNN RGB INT8)** | 32×32 RGB | 400 | 386 / 400 | **96.50%** |
-| **Iterasi 4 — Final Verilog RTL ModelSim (`cnn_coffee_top.v`)** | 32×32 RGB | 400 | 388 / 400 | **97.00%** |
+| **Iterasi 3 — Final Python Golden Model (2-Layer CNN RGB INT8)** | 32×32 RGB | 400 | 388 / 400 | **97.00%** |
+| **Iterasi 4 — Final Verilog RTL (`cnn_coffee_top.v`)** | 32×32 RGB | 400 | 388 / 400 | **97.00%** |
 
-> **Analisis Kesesuaian Hardware vs Software:** Implementasi akselerator 2D-CNN terkuantisasi INT8 pada Verilog RTL mencapai akurasi **97.00% (388/400)** pada pengujian 400 citra uji `.bmp` 32×32 piksel RGB, selaras dengan Golden Model Python INT8 (**96.50%** / 386 dari 400 citra).
+> **Verifikasi Kesesuaian Bit-Exact (Python vs Verilog RTL):** Pengujian lintas 400 citra uji `.bmp` 32×32 piksel RGB menghasilkan **400/400 prediksi identik (100.00% Exact Match)** dengan akurasi **97.00% (388/400 benar)** pada perangkat lunak maupun perangkat keras. Log lengkap setiap sampel tersedia pada [`rtl_predictions.csv`](rtl_predictions.csv).
 
 ---
 
 ## 2. Alur Pengerjaan Step-by-Step
 
-1. **Step 1A — Pembacaan Citra `.bmp` 32×32 & Validasi Model Python (`96.50%`):**
+1. **Step 1A — Pembacaan Citra `.bmp` 32×32 & Validasi Model Python (`97.00%`):**
    Skrip Python membaca 400 citra uji `.bmp` beresolusi 32×32 piksel RGB, menjalankan inferensi aritmetika integer (`INT8`), dan memverifikasi prediksi kelas (*Green*, *Light*, *Medium*, *Dark*).
    ![Hasil Evaluasi Python](images/step1_python_bmp_preview.png)
 
